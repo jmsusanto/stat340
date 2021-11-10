@@ -1,0 +1,16 @@
+---
+title: "Variable EDA - Jing Kai"
+author: "Jing Kai Ong"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+students <- read_csv("../data/student-mat.csv")
+students
+```
+
