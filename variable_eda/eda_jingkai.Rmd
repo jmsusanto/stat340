@@ -11,6 +11,14 @@ library(tidyverse)
 
 ```{r}
 students <- read_csv("../data/student-mat.csv")
-students
+```
+
+We first look at the distribution of the alcohol consumption variables, `Dalc` and `Walc`
+
+```{r}
+ggplot(data=students,mapping=aes(x=Dalc)) +
+  geom_bar(alpha = 0.75) +
+  geom_bar(aes(x=Walc),alpha=0.5) +
+  theme_bw()
 ```
 
