@@ -1,0 +1,186 @@
+---
+title: "Group Project - EDA"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data <- read.csv("student-mat.csv")
+head(data)
+```
+
+```{r}
+library(tidyverse)
+data <- data %>% 
+  select(school, sex, age, address, famsize, Dalc, Walc)
+head(data)
+```
+
+```{r}
+data %>% 
+  group_by(school) %>% 
+  summarize(count=n())
+data1 <- data %>% 
+  group_by(Dalc, school) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(school=="GP"~349, 
+                         school=="MS"~46)) %>% 
+  mutate(p=count/total)
+data1 %>% 
+  ggplot() +
+  geom_bar(aes(Dalc, p, fill=school), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekday Consumption Level by School") + 
+  ylab("Proportion") +
+  xlab("Weekday Consumption Level")
+
+data %>% 
+  group_by(school) %>% 
+  summarize(count=n())
+data1 <- data %>% 
+  group_by(Walc, school) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(school=="GP"~349, 
+                         school=="MS"~46)) %>% 
+  mutate(p=count/total)
+data1 %>% 
+  ggplot() +
+  geom_bar(aes(Walc, p, fill=school), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekend Consumption Level by School") + 
+  ylab("Proportion") +
+  xlab("Weekend Consumption Level")
+```
+
+```{r}
+data %>% 
+  group_by(sex) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(sex, Dalc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(sex=="F"~208, 
+                         sex=="M"~187)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Dalc, p, fill=sex), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekday Consumption Level by Sex") + 
+  ylab("Proportion") +
+  xlab("Weekday Consumption Level")
+
+data %>% 
+  group_by(sex) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(sex, Walc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(sex=="F"~208, 
+                         sex=="M"~187)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Walc, p, fill=sex), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekend Consumption Level by Sex") + 
+  ylab("Proportion") +
+  xlab("Weekend Consumption Level")
+```
+
+```{r}
+data %>% 
+  group_by(age) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(age, Dalc) %>% 
+  summarize(count=n(), .groups="drop")
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Dalc, count, fill=age), position="stack", stat="identity") +
+  ggtitle("Counts of Students in Each Weekday Consumption Level by Age") + 
+  ylab("Counts") +
+  xlab("Weekday Consumption Level") +
+  facet_grid(~age)
+
+data %>% 
+  group_by(age) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(age, Walc) %>% 
+  summarize(count=n(), .groups="drop")
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Walc, count, fill=age), position="stack", stat="identity") +
+  ggtitle("Counts of Students in Each Weekend Consumption Level by Age") + 
+  ylab("Counts") +
+  xlab("Weekend Consumption Level") +
+  facet_grid(~age)
+```
+
+```{r}
+data %>% 
+  group_by(address) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(address, Dalc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(address=="R"~88, 
+                         address=="U"~307)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Dalc, p, fill=address), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekday Consumption Level by Location") + 
+  ylab("Proportion") +
+  xlab("Weekday Consumption Level")
+
+data %>% 
+  group_by(address) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(address, Walc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(address=="R"~88, 
+                         address=="U"~307)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Walc, p, fill=address), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekend Consumption Level by Location") + 
+  ylab("Proportion") +
+  xlab("Weekend Consumption Level")
+```
+
+```{r}
+data %>% 
+  group_by(famsize) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(famsize, Dalc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(famsize=="GT3"~281, 
+                         famsize=="LE3"~114)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Dalc, p, fill=famsize), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekday Consumption Level by Family Size") + 
+  ylab("Proportion") +
+  xlab("Weekday Consumption Level")
+
+data %>% 
+  group_by(famsize) %>% 
+  summarize(count=n())
+data2 <- data %>% 
+  group_by(famsize, Walc) %>% 
+  summarize(count=n(), .groups="drop") %>% 
+  mutate(total=case_when(famsize=="GT3"~281, 
+                         famsize=="LE3"~114)) %>% 
+  mutate(p=count/total)
+data2 %>% 
+  ggplot() +
+  geom_bar(aes(Walc, p, fill=famsize), position="dodge", stat="identity") +
+  ggtitle("Proportion of Students in Each Weekend Consumption Level by Family Size") + 
+  ylab("Proportion") +
+  xlab("Weekend Consumption Level")
+```
