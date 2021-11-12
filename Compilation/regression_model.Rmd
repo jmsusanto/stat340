@@ -1,0 +1,13 @@
+---
+title: "Regression Model"
+author: "Jing Kai Ong"
+date: "11/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document will contain the regression model we use for our project
+
