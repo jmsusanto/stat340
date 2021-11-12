@@ -1,0 +1,24 @@
+---
+title: "Variable EDA - Jing Kai"
+author: "Jing Kai Ong"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+students <- read_csv("../data/student-mat.csv")
+```
+
+We first look at the distribution of the alcohol consumption variables, `Dalc` and `Walc`
+
+```{r}
+ggplot(data=students,mapping=aes(x=Dalc)) +
+  geom_bar(alpha = 0.75) +
+  geom_bar(aes(x=Walc),alpha=0.5) +
+  theme_bw()
+```
+
