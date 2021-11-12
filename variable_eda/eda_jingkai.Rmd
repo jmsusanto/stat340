@@ -11,14 +11,97 @@ library(tidyverse)
 
 ```{r}
 students <- read_csv("../data/student-mat.csv")
+summary(students)
 ```
+
+It does not look like there is missing data for our variables
+
+## Part 1: Exploratory Data Analysis
+
+### Dependent variables
 
 We first look at the distribution of the alcohol consumption variables, `Dalc` and `Walc`
 
+We also have the table information
+
 ```{r}
+
+table(students$Dalc)
+table(students$Walc)
+
 ggplot(data=students,mapping=aes(x=Dalc)) +
   geom_bar(alpha = 0.75) +
   geom_bar(aes(x=Walc),alpha=0.5) +
   theme_bw()
 ```
+
+It looks like there is quite a difference between the workday vs weekend alcohol consumption.
+
+### Independent Variables
+
+The following code provides a summary of the variables, as well as a bar plot comparing the distributions of different categories and how many lie in each category of alcohol consumption.
+
+
+higher - Describes whether the student intends to pursue higher education or not (yes or no)
+This variable could be significant, because we could predict that students who intend to pursue higher education are less likely to drink
+
+```{r}
+table(students$higher)
+
+ggplot(data=students, mapping=aes(x=Dalc)) +
+  geom_bar(aes(fill=higher),position="dodge2")
+
+ggplot(data=students, mapping=aes(x=Walc)) +
+  geom_bar(aes(fill=higher),position="dodge2")
+```
+
+internet - Describes whether the student has internet access at home (yes or no)
+
+```{r}
+table(students$internet)
+
+ggplot(data=students, mapping=aes(x=Dalc)) +
+  geom_bar(aes(fill=internet),position="dodge2")
+
+ggplot(data=students, mapping=aes(x=Walc)) +
+  geom_bar(aes(fill=internet),position="dodge2")
+
+```
+
+romantic - Describes whether the student is in a romantic relationship or not (yes or no)
+
+```{r}
+table(students$romantic)
+
+ggplot(data=students, mapping=aes(x=Dalc)) +
+  geom_bar(aes(fill=romantic),position="dodge2")
+
+ggplot(data=students, mapping=aes(x=Walc)) +
+  geom_bar(aes(fill=romantic),position="dodge2")
+```
+
+famrel - Describes the quality of the student's family relationship (scale of 1 to 5)
+
+```{r}
+table(students$famrel)
+
+ggplot(data=students, mapping=aes(x=Dalc)) +
+  geom_bar(aes(fill=as.factor(famrel)),position="dodge2")
+
+ggplot(data=students, mapping=aes(x=Walc)) +
+  geom_bar(aes(fill=as.factor(famrel)),position="dodge2")
+```
+
+freetime - Describes how much free time the student has (scale of 1 to 5)
+```{r}
+table(students$freetime)
+
+ggplot(data=students, mapping=aes(x=Dalc)) +
+  geom_bar(aes(fill=as.factor(freetime)),position="dodge2")
+
+ggplot(data=students, mapping=aes(x=Walc)) +
+  geom_bar(aes(fill=as.factor(freetime)),position="dodge2")
+
+```
+
 
