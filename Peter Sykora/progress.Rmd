@@ -40,6 +40,18 @@ grid.arrange(p1, p2, ncol = 2)
 
 ```{r}
 
+# look at the histograms of `Dalc` and `Walc` vs. `schoolsup`
+p1 <- ggplot(students_modified, aes(x = Dalc)) +
+  geom_bar(aes(fill = schoolsup), position="dodge2")
+p2 <- ggplot(students_modified, aes(x = Walc)) +
+  geom_bar(aes(fill = schoolsup), position="dodge2")
+grid.arrange(p1, p2, ncol = 2)
+
+
+```
+
+```{r}
+
 # look at the boxplots of `Dalc` and `Walc` vs. `famsup`
 p1 <- ggplot(students_modified, aes(x = famsup, y = Dalc)) +
   geom_boxplot()
@@ -48,6 +60,18 @@ p2 <- ggplot(students_modified, aes(x = famsup, y = Walc)) +
 grid.arrange(p1, p2, ncol = 2)
 
 ```
+
+```{r}
+
+# look at the histograms of `Dalc` and `Walc` vs. `famsup`
+p1 <- ggplot(students_modified, aes(x = Dalc)) +
+  geom_bar(aes(fill = famsup), position="dodge2")
+p2 <- ggplot(students_modified, aes(x = Walc)) +
+  geom_bar(aes(fill = famsup), position="dodge2")
+grid.arrange(p1, p2, ncol = 2)
+
+```
+
 
 ```{r}
 
@@ -62,6 +86,18 @@ grid.arrange(p1, p2, ncol = 2)
 
 ```{r}
 
+# look at the histograms of `Dalc` and `Walc` vs. `paid`
+p1 <- ggplot(students_modified, aes(x = Dalc)) +
+  geom_bar(aes(fill = paid), position="dodge2")
+p2 <- ggplot(students_modified, aes(x = Walc)) +
+  geom_bar(aes(fill = paid), position="dodge2")
+grid.arrange(p1, p2, ncol = 2)
+
+```
+
+
+```{r}
+
 # look at the boxplots of `Dalc` and `Walc` vs. `activities`
 p1 <- ggplot(students_modified, aes(x = activities, y = Dalc)) +
   geom_boxplot()
@@ -73,6 +109,18 @@ grid.arrange(p1, p2, ncol = 2)
 
 ```{r}
 
+# look at the histograms of `Dalc` and `Walc` vs. `activities`
+p1 <- ggplot(students_modified, aes(x = Dalc)) +
+  geom_bar(aes(fill = activities), position="dodge2")
+p2 <- ggplot(students_modified, aes(x = Walc)) +
+  geom_bar(aes(fill = activities), position="dodge2")
+grid.arrange(p1, p2, ncol = 2)
+
+```
+
+
+```{r}
+
 # look at the boxplots of `Dalc` and `Walc` vs. `nursery`
 p1 <- ggplot(students_modified, aes(x = nursery, y = Dalc)) +
   geom_boxplot()
@@ -81,3 +129,16 @@ p2 <- ggplot(students_modified, aes(x = nursery, y = Walc)) +
 grid.arrange(p1, p2, ncol = 2)
 
 ```
+
+```{r}
+
+# look at the histograms of `Dalc` and `Walc` vs. `nursery`
+p1 <- ggplot(students_modified, aes(x = Dalc)) +
+  geom_bar(aes(fill = nursery), position="dodge2")
+p2 <- ggplot(students_modified, aes(x = Walc)) +
+  geom_bar(aes(fill = nursery), position="dodge2")
+grid.arrange(p1, p2, ncol = 2)
+
+```
+
+
